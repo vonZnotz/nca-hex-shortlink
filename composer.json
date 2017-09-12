@@ -1,0 +1,6 @@
+{
+	"name": "nca/shortlink",
+	"require-dev": {
+		"phpunit/phpunit": "^6.3"
+	}
+}
