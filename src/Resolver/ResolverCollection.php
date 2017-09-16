@@ -20,6 +20,14 @@ class ResolverCollection implements ResolverInterface
     }
 
     /**
+     * @param ResolverInterface $resolver
+     */
+    public function add(ResolverInterface $resolver): void
+    {
+        $this->resolvers[] = $resolver;
+    }
+
+    /**
      * @inheritDoc
      */
     public function resolve(string $source): ?string
