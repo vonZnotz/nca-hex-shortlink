@@ -1,16 +1,37 @@
 <?php
 
+declare(strict_types=1);
+
 use Nca\Shortlink\Entity\Shortlink;
 use PHPUnit\Framework\TestCase;
 
 class ShortlinkTest extends TestCase
 {
-    const SOURCE_TESTVALUE = 'testomat';
-
-    public function testAllowsSettingSource()
+    public function testContainsValuesGivenInConstructor()
     {
-        $shortlink = new Shortlink();
-        $shortlink->setSource(self::SOURCE_TESTVALUE);
-        $this->assertEquals(self::SOURCE_TESTVALUE, $shortlink->getSource());
+        $testSource = 'test-source';
+        $testDestination = 'test-destination';
+
+        $entity = new Shortlink($testSource, $testDestination);
+        $this->assertEquals($testSource, $entity->getSource());
+        $this->assertEquals($testDestination, $entity->getDestination());
+    }
+
+    public function testFailsOnInvalidNumberOfConstructorArguments()
+    {
+        $this->expectException(\ArgumentCountError::class);
+        new Shortlink();
+    }
+
+    public function testFailsOnInvalidSourceType()
+    {
+        $this->expectException(\TypeError::class);
+        new Shortlink(null, 'test-destination');
+    }
+
+    public function testFailsOnInvalidDestinationType()
+    {
+        $this->expectException(\TypeError::class);
+        new Shortlink('test-source', null);
     }
 }

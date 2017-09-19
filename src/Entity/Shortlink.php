@@ -1,13 +1,30 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Nca\Shortlink\Entity;
 
 class Shortlink
 {
-    /** @var string */
+    /**
+     * @var string
+     */
     private $source;
-    /** @var string */
+
+    /**
+     * @var string
+     */
     private $destination;
+
+    /**
+     * @param string $source
+     * @param string $destination
+     */
+    public function __construct(string $source, string $destination)
+    {
+        $this->source = $source;
+        $this->destination = $destination;
+    }
 
     /**
      * @return string
@@ -18,26 +35,10 @@ class Shortlink
     }
 
     /**
-     * @param string $source
-     */
-    public function setSource(string $source): void
-    {
-        $this->source = $source;
-    }
-
-    /**
      * @return string
      */
     public function getDestination(): string
     {
         return $this->destination;
-    }
-
-    /**
-     * @param string $destination
-     */
-    public function setDestination(string $destination): void
-    {
-        $this->destination = $destination;
     }
 }
